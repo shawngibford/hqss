@@ -30,7 +30,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans:** 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Remove Lambert-W, rename to specific growth rate, simplify denormalization, retrain models
+- [x] 01-01-PLAN.md — Remove Lambert-W, rename to specific growth rate, simplify denormalization, retrain models
 - [ ] 01-02-PLAN.md — PAR_LIGHT ablation: no-PAR model variants, generation loop, LSTM comparison table
 
 ### Phase 2: Quality Metrics and Experiment Design
@@ -81,7 +81,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Preprocessing | 0/2 | Planning complete | - |
+| 1. Preprocessing | 1/2 | In progress | - |
 | 2. Quality Metrics and Experiment Design | 0/TBD | Not started | - |
 | 3. Model Fairness | 0/TBD | Not started | - |
 | 4. Data Integrity | 0/TBD | Not started | - |
