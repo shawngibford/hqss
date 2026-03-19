@@ -12,7 +12,7 @@ Four phases take the HQSS notebook from a working proof-of-concept to a publicat
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Preprocessing** - Remove Lambert-W, rename to specific growth rate, add PAR_LIGHT ablation
+- [x] **Phase 1: Preprocessing** - Remove Lambert-W, rename to specific growth rate, add PAR_LIGHT ablation (completed 2026-03-19)
 - [ ] **Phase 2: Quality Metrics and Experiment Design** - Implement all quality metrics and complete the experiment design (baselines, seeds, timing)
 - [ ] **Phase 3: Model Fairness** - Add parameter-matched baseline, equalize HPO/epochs, add noisy simulator, fix qGAN window boundaries
 - [ ] **Phase 4: Data Integrity** - Retrain all generators on train-split only and re-run LSTM experiment on leak-free data
@@ -27,7 +27,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   1. Lambert-W transform is absent from the notebook; only z-score normalization is applied to specific growth rates
   2. Every occurrence of "log returns" is replaced with "specific growth rate" and a biological justification cell (µ = d(ln OD)/dt) is present
   3. Notebook runs two full generation+LSTM evaluation paths — one with PAR_LIGHT conditioning, one without — and reports the performance difference
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 
 Plans:
 - [x] 01-01-PLAN.md — Remove Lambert-W, rename to specific growth rate, simplify denormalization, retrain models
@@ -81,7 +81,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Preprocessing | 1/2 | In progress | - |
+| 1. Preprocessing | 2/2 | Complete   | 2026-03-19 |
 | 2. Quality Metrics and Experiment Design | 0/TBD | Not started | - |
 | 3. Model Fairness | 0/TBD | Not started | - |
 | 4. Data Integrity | 0/TBD | Not started | - |

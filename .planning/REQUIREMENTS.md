@@ -11,7 +11,7 @@ Requirements for scientific rigor milestone. Each maps to roadmap phases.
 
 - [x] **PREP-01**: Remove Lambert-W Gaussianization — use z-score normalization only on specific growth rates
 - [x] **PREP-02**: Rename "log returns" to "specific growth rate" throughout notebook with biological justification text
-- [ ] **PREP-03**: PAR_LIGHT ablation — train and generate with vs without light conditioning, quantify contribution to downstream LSTM performance
+- [x] **PREP-03**: PAR_LIGHT ablation — train and generate with vs without light conditioning, quantify contribution to downstream LSTM performance
 
 ### Quality Metrics
 
@@ -71,7 +71,7 @@ Requirements for scientific rigor milestone. Each maps to roadmap phases.
 |-------------|-------|--------|
 | PREP-01 | Phase 1 | Pending |
 | PREP-02 | Phase 1 | Pending |
-| PREP-03 | Phase 1 | Pending |
+| PREP-03 | Phase 1 | Complete |
 | QUAL-01 | Phase 2 | Pending |
 | QUAL-02 | Phase 2 | Pending |
 | QUAL-03 | Phase 2 | Pending |
