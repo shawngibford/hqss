@@ -81,20 +81,23 @@ Requirements for critical bug fixes. Each maps to roadmap phases.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| GENBUG-01 | TBD | Pending |
-| GENBUG-02 | TBD | Pending |
-| GENBUG-03 | TBD | Pending |
-| GENBUG-04 | TBD | Pending |
-| DINT-01 | TBD | Pending |
-| DINT-02 | TBD | Pending |
-| DINT-03 | TBD | Pending |
-| EVAL-01 | TBD | Pending |
+| PREP-01 | Phase 1 | Complete |
+| PREP-02 | Phase 1 | Complete |
+| PREP-03 | Phase 1 | Complete |
+| GENBUG-01 | Phase 2 | Pending |
+| GENBUG-02 | Phase 2 | Pending |
+| GENBUG-03 | Phase 2 | Pending |
+| GENBUG-04 | Phase 2 | Pending |
+| DINT-01 | Phase 3 | Pending |
+| DINT-02 | Phase 4 | Pending |
+| DINT-03 | Phase 4 | Pending |
+| EVAL-01 | Phase 4 | Pending |
 
 **Coverage:**
 - v1.1 requirements: 8 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 8
+- Mapped to phases: 8/8
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-30*
-*Last updated: 2026-03-30 after v1.1 milestone initialization*
+*Last updated: 2026-03-30 after v1.1 roadmap creation*
