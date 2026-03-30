@@ -1,12 +1,12 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
+milestone: v1.1
 milestone_name: milestone
-status: unknown
-stopped_at: Completed 01-02-PLAN.md
-last_updated: "2026-03-19T06:41:41.892Z"
+status: defining_requirements
+stopped_at: null
+last_updated: "2026-03-30"
 progress:
-  total_phases: 4
+  total_phases: 0
   completed_phases: 1
   total_plans: 2
   completed_plans: 2
@@ -16,37 +16,17 @@ progress:
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-18)
+See: .planning/PROJECT.md (updated 2026-03-30)
 
-**Core value:** Demonstrate quantum circuit ansätze can generate faithful synthetic bioprocess data with rigorous methodology
-**Current focus:** Phase 01 — preprocessing
+**Core value:** Demonstrate quantum circuit ansatze can generate faithful synthetic bioprocess data with rigorous methodology
+**Current focus:** Defining v1.1 requirements
 
 ## Current Position
 
-Phase: 01 (preprocessing) — EXECUTING
-Plan: 2 of 2
-
-## Performance Metrics
-
-**Velocity:**
-
-- Total plans completed: 1
-- Average duration: 8 min
-- Total execution time: 8 min
-
-**By Phase:**
-
-| Phase | Plans | Total | Avg/Plan |
-|-------|-------|-------|----------|
-| 01-preprocessing | 1/2 | 8 min | 8 min |
-
-**Recent Trend:**
-
-- Last 5 plans: 01-01 (8 min)
-- Trend: —
-
-*Updated after each plan completion*
-| Phase 01-preprocessing P02 | 5 | 2 tasks | 1 files |
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-03-30 — Milestone v1.1 started
 
 ## Accumulated Context
 
@@ -55,13 +35,11 @@ Plan: 2 of 2
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
-- Roadmap: Data leakage fix (DATA-01, DATA-02) placed last — iterate on metrics/baselines with existing checkpoints first
-- Roadmap: Lambert-W removal placed first — changes the pipeline everything else depends on
-- Roadmap: EXPR-04 (qGAN window boundary) grouped with model fairness phase, not experiment design
-- 01-01: All 4 models use 10 epochs for Phase 1 prototyping (user override; PHASE1_REDUCED=True)
-- 01-01: growth_rate chosen over specific_growth_rate — terse, avoids collision with MU constant
-- 01-01: Lambert-W entirely deleted (not commented out); simplified denorm chain: denorm_qgan_output(gr_min, gr_max), denorm_vae_output(mu, sigma)
-- [Phase 01-preprocessing]: 01-02: 1-channel critic for no-PAR GANs (PAR channel has no meaning without conditioning); VAE entries reuse existing generation lambdas (no PAR input at generation time)
+- v1.0 Phase 1 complete: Lambert-W removed, growth_rate naming, PAR ablation variants
+- v1.1: Deep code review (sci_review.md) uncovered 8 critical + 17 major + 15 minor issues
+- v1.1: Generation bugs (noise mismatch, *0.1 scaling) must be fixed before any metrics work
+- v1.1: Quantum distribution principle — circuits define their own distributions, no classical overlays
+- v1.1: Scrap unstarted v1.0 phases, redefine roadmap around code review findings
 
 ### Pending Todos
 
@@ -69,12 +47,12 @@ None yet.
 
 ### Blockers/Concerns
 
-- Quantum circuit generation is slow — N≥10 seeds × 4 models × 3 augmentation sizes will require significant compute time (Phase 2)
-- Retraining all 4 models on train-split only (Phase 4) requires significant quantum circuit compute
-- RESOLVED: Lambert-W removal (Phase 1) — pipeline simplified; old Lambert-W checkpoints will be replaced on next notebook run
+- Quantum circuit generation is slow — N>=10 seeds x 4 models x 3 sizes = significant compute
+- Retraining all 4 models on train-split only requires significant quantum circuit compute
+- qGAN bugs (C1, C2) mean all existing qGAN checkpoints/results are invalid — must regenerate
 
 ## Session Continuity
 
-Last session: 2026-03-19T06:36:31.186Z
-Stopped at: Completed 01-02-PLAN.md
+Last session: 2026-03-30
+Stopped at: Defining v1.1 requirements
 Resume file: None
