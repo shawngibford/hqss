@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Generation Pipeline & Experimental Rigor
-status: Ready to execute
-stopped_at: Completed 02-01-PLAN.md
-last_updated: "2026-03-30T17:46:21.775Z"
+status: Phase complete — ready for verification
+stopped_at: Completed 02-02-PLAN.md
+last_updated: "2026-03-30T17:48:57.458Z"
 progress:
   total_phases: 4
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 4
-  completed_plans: 3
+  completed_plans: 4
 ---
 
 # Project State
@@ -46,6 +46,7 @@ Plan: 2 of 2
 - Trend: —
 
 | Phase 02-generation-bug-fixes P01 | 2 | 2 tasks | 1 files |
+| Phase 02-generation-bug-fixes P02 | 10 | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -62,6 +63,7 @@ Recent decisions affecting current work:
 - v1.1: DINT-01 (leakage fix) kept in separate phase from code fixes — requires expensive retraining
 - [Phase 02-generation-bug-fixes]: GENBUG-01/02/03 fixes applied to all 3 qGAN variants; torch.randn noise, row-major indexing, no 0.1 scaling, non-overlapping seed scheme
 - [Phase 02-generation-bug-fixes]: Smoke test cell added after generation loop using MODELS_INFO dict; SMOKE_N=10 for fast validation; warns on variance and sign bias (not asserts)
+- [Phase 02-generation-bug-fixes]: GENBUG-04: per-curve windowing applied to all 3 LSTM loops — no window ever spans two synthetic curves or the real/synthetic boundary
 
 ### Pending Todos
 
@@ -75,6 +77,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-30T17:46:21.772Z
-Stopped at: Completed 02-01-PLAN.md
+Last session: 2026-03-30T17:48:57.455Z
+Stopped at: Completed 02-02-PLAN.md
 Resume file: None
