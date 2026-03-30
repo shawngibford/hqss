@@ -60,10 +60,11 @@ Plans:
   2. Each of the 3 seed replicates at size=250 produces entirely unique curves with zero shared seeds across replicates
   3. Sliding windows are created per-curve independently before concatenation -- no window spans the boundary between two different synthetic curves or between synthetic and real data
   4. A smoke test cell confirms all 4 models generate growth-rate distributions with mean and std within a reasonable range of real data (no 10x compression, no all-positive artifacts)
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-(none yet -- defined by plan-phase)
+- [ ] 02-01-PLAN.md — Fix qGAN noise/scaling, seed collisions, and add smoke test cell
+- [ ] 02-02-PLAN.md — Fix cross-boundary window contamination in LSTM loops
 
 ### Phase 3: Data Leakage Fix
 **Goal**: All generative models train exclusively on the training split, eliminating information leakage from the test period
@@ -100,6 +101,6 @@ Phases execute in numeric order: 1 (complete) -> 2 -> 3 -> 4
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
 | 1. Preprocessing | v1.0 | 2/2 | Complete | 2026-03-19 |
-| 2. Generation Bug Fixes | v1.1 | 0/TBD | Not started | - |
+| 2. Generation Bug Fixes | v1.1 | 0/2 | Planning | - |
 | 3. Data Leakage Fix | v1.1 | 0/TBD | Not started | - |
 | 4. LSTM Evaluation Fixes | v1.1 | 0/TBD | Not started | - |
