@@ -1,100 +1,100 @@
 # Requirements: HQSS
 
-**Defined:** 2026-03-18
-**Core Value:** Demonstrate quantum circuit ansätze can generate faithful synthetic bioprocess data with rigorous methodology
+**Defined:** 2026-03-30
+**Core Value:** Demonstrate quantum circuit ansatze can generate faithful synthetic bioprocess data with rigorous methodology
 
-## v1 Requirements
+## v1.1 Requirements
 
-Requirements for scientific rigor milestone. Each maps to roadmap phases.
+Requirements for critical bug fixes. Each maps to roadmap phases.
 
-### Preprocessing
+### Generation Bugs
 
-- [x] **PREP-01**: Remove Lambert-W Gaussianization — use z-score normalization only on specific growth rates
-- [x] **PREP-02**: Rename "log returns" to "specific growth rate" throughout notebook with biological justification text
-- [x] **PREP-03**: PAR_LIGHT ablation — train and generate with vs without light conditioning, quantify contribution to downstream LSTM performance
-
-### Quality Metrics
-
-- [ ] **QUAL-01**: Implement Section A stub cells — compute MMD (RBF kernel) and EMD (Wasserstein-1) on synthetic vs real data
-- [ ] **QUAL-02**: Implement temporal quality metrics alongside MMD/EMD — ACF RMSE, dynamic time warping distance, Fréchet distance on full curves
-- [ ] **QUAL-03**: ACF validation — compute and compare ACF(lag 1–50) of synthetic samples vs real data for each model, report RMSE
-- [ ] **QUAL-04**: Execute and display Section B statistical tests — Diebold-Mariano, Kruskal-Wallis, Cliff's delta with proper output
-- [ ] **QUAL-05**: Biological plausibility metrics — monotonicity fraction, OD range validation, growth phase identification for synthetic curves
-- [ ] **QUAL-06**: Mode collapse detection — compute diversity metrics (pairwise distance distribution, coverage, density) across generated samples per model
-- [ ] **QUAL-07**: Overfitting detection — plot train vs validation loss curves, measure nearest-neighbor distance between synthetic and training windows to detect memorization
-
-### Experiment Design
-
-- [ ] **EXPR-01**: Add classical augmentation baselines — Gaussian noise injection and bootstrap resampling — run through same LSTM evaluation
-- [ ] **EXPR-02**: Increase to N≥10 seeds with proper 95% confidence intervals and Bonferroni or BH multiple-comparisons correction
-- [ ] **EXPR-03**: Report training wall-clock time for all generative models and LSTM training
-- [ ] **EXPR-04**: Window boundary fix — add continuity constraint or smoothing at qGAN 10-point window junctions, validate smoothness
-
-### Model Fairness
-
-- [ ] **FAIR-01**: Add parameter-matched classical baseline (~75-param classical generator) to match qGAN parameter budget
-- [ ] **FAIR-02**: Equalize hyperparameter optimization — apply equal HPO budget to all models or use common principled defaults
-- [ ] **FAIR-03**: Add noisy quantum simulator results — depolarizing and readout noise models via PennyLane default.mixed
-- [ ] **FAIR-04**: Equalize training epochs across model pairs (qVAE 50 → match cVAE 200, or justify difference)
+- [ ] **GENBUG-01**: Fix qGAN noise distribution — use `torch.randn` at generation (matching training), not `np.random.uniform(0, 4pi)`
+- [ ] **GENBUG-02**: Remove `* 0.1` scaling at generation — circuit outputs must match training scale
+- [ ] **GENBUG-03**: Fix seed collisions — use non-overlapping seed ranges so all 3 replicates are truly independent (no shared curves)
+- [ ] **GENBUG-04**: Fix cross-boundary window contamination — create sliding windows per curve independently, then concatenate (X, y) arrays
 
 ### Data Integrity
 
-- [ ] **DATA-01**: Retrain all four generative models on train-split only windows (first 80% of series) to fix data leakage
-- [ ] **DATA-02**: Re-run full LSTM augmentation experiment on leak-free synthetic data and report before/after comparison
+- [ ] **DINT-01**: Fix data leakage — build `gan_loader`/`vae_loader` from train-split only windows; compute MU, SIGMA, GR_MIN, GR_MAX on training data only
+- [ ] **DINT-02**: Fix training budget asymmetry — add validation-based early stopping or epoch-proportional training so augmented LSTMs don't get 320x more gradient steps than baseline
+- [ ] **DINT-03**: Run baseline LSTM with same 3+ seeds — report baseline mean +/- std for fair comparison instead of single-seed point estimate
 
-## v2 Requirements
+### Evaluation
 
-### IBM Hardware
+- [ ] **EVAL-01**: Drop MAPE or replace with symmetric MAPE / RMSSE — current MAPE divides by near-zero growth rates producing meaningless 144-530% values
 
-- **IBM-01**: Execute qGAN on IBM quantum hardware via Qiskit Runtime
-- **IBM-02**: Execute qVAE on IBM quantum hardware
-- **IBM-03**: Compare hardware results (with noise) to simulator results
+## v1.0 Requirements (Validated)
 
-### Publication
+### Preprocessing (Phase 1 — Complete)
 
-- **PUB-01**: Write Limitations section acknowledging single trajectory, observed conditions scope
-- **PUB-02**: Archive data.csv publicly with SHA256 hash
-- **PUB-03**: Add multi-step prediction evaluation (h=7 day forecast)
+- [x] **PREP-01**: Remove Lambert-W Gaussianization — use z-score normalization only on specific growth rates
+- [x] **PREP-02**: Rename "log returns" to "specific growth rate" throughout notebook with biological justification text
+- [x] **PREP-03**: PAR_LIGHT ablation — train and generate with vs without light conditioning, quantify contribution
+
+## v1.2 Requirements (Deferred)
+
+### Quality Metrics
+
+- **QUAL-01**: Implement Section A — MMD + EMD computation for each model vs real data
+- **QUAL-02**: Temporal metrics — ACF RMSE, DTW, Frechet distance
+- **QUAL-03**: ACF validation — ACF(1-50) synthetic vs real per model with overlay plots
+- **QUAL-04**: Execute Section B statistical tests with multiple-comparisons correction
+- **QUAL-05**: Biological plausibility — monotonicity, range, growth phases
+- **QUAL-06**: Mode collapse detection — diversity/coverage metrics
+- **QUAL-07**: Overfitting detection — train/val loss, memorization check
+
+### Experiment Design
+
+- **EXPR-01**: Classical augmentation baselines (Gaussian noise + bootstrap)
+- **EXPR-02**: N>=10 seeds with proper 95% CIs and multiple-comparisons correction
+- **EXPR-03**: Report training wall-clock time for all models
+- **EXPR-04**: Window boundary fix — continuity at qGAN junctions
+
+### Model Fairness
+
+- **FAIR-01**: Parameter-matched classical baseline (~75-param cGAN)
+- **FAIR-02**: Equalize HPO across all models
+- **FAIR-03**: Noisy quantum simulator (depolarizing + readout noise)
+- **FAIR-04**: Equalize training epochs (qVAE/cVAE)
+- **FAIR-05**: Fix qVAE Softplus logvar (posterior can't shrink below prior)
+- **FAIR-06**: Address cVAE mode collapse (narrow all-positive output)
+
+### IBM & Polish
+
+- **IBM-01**: Fix IBM PAR_LIGHT scale mismatch (par_norm_trim vs par_scaled_trim)
+- **IBM-02**: Fix IBM qVAE device patching (ineffective — QNodes still use simulator)
+- **POLISH-01**: Add ACF overlay plots, training loss curves, ablation bar charts
+- **POLISH-02**: Fix MMD/EMD shared y-axis, compute metrics across all seeds
+- **POLISH-03**: Fix DM p-value aggregation (Fisher's method, not averaging)
 
 ## Out of Scope
 
 | Feature | Reason |
 |---------|--------|
-| TSTR evaluation | Focus is historical+synthetic augmentation, not synthetic-only training |
-| Real-time/streaming data | Single batch experiment |
+| IBM quantum hardware execution | Deferred until simulator results are correct |
+| TSTR evaluation | Focus is augmentation, not synthetic-only training |
 | Multi-organism generalization | Single OD trajectory; acknowledge in limitations |
-| OAuth/web interface | Research notebook, not application |
+| Real-time/streaming data | Single batch experiment |
 
 ## Traceability
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| PREP-01 | Phase 1 | Pending |
-| PREP-02 | Phase 1 | Pending |
-| PREP-03 | Phase 1 | Complete |
-| QUAL-01 | Phase 2 | Pending |
-| QUAL-02 | Phase 2 | Pending |
-| QUAL-03 | Phase 2 | Pending |
-| QUAL-04 | Phase 2 | Pending |
-| QUAL-05 | Phase 2 | Pending |
-| QUAL-06 | Phase 2 | Pending |
-| QUAL-07 | Phase 2 | Pending |
-| EXPR-01 | Phase 2 | Pending |
-| EXPR-02 | Phase 2 | Pending |
-| EXPR-03 | Phase 2 | Pending |
-| EXPR-04 | Phase 3 | Pending |
-| FAIR-01 | Phase 3 | Pending |
-| FAIR-02 | Phase 3 | Pending |
-| FAIR-03 | Phase 3 | Pending |
-| FAIR-04 | Phase 3 | Pending |
-| DATA-01 | Phase 4 | Pending |
-| DATA-02 | Phase 4 | Pending |
+| GENBUG-01 | TBD | Pending |
+| GENBUG-02 | TBD | Pending |
+| GENBUG-03 | TBD | Pending |
+| GENBUG-04 | TBD | Pending |
+| DINT-01 | TBD | Pending |
+| DINT-02 | TBD | Pending |
+| DINT-03 | TBD | Pending |
+| EVAL-01 | TBD | Pending |
 
 **Coverage:**
-- v1 requirements: 20 total
-- Mapped to phases: 20
-- Unmapped: 0
+- v1.1 requirements: 8 total
+- Mapped to phases: 0 (pending roadmap)
+- Unmapped: 8
 
 ---
-*Requirements defined: 2026-03-18*
-*Last updated: 2026-03-18 — traceability updated after roadmap creation*
+*Requirements defined: 2026-03-30*
+*Last updated: 2026-03-30 after v1.1 milestone initialization*
