@@ -2,16 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Generation Pipeline & Experimental Rigor
-status: planning
-stopped_at: Phase 2 context gathered
-last_updated: "2026-03-30T15:55:46.682Z"
-last_activity: 2026-03-30 — Roadmap created for v1.1
+status: Ready to execute
+stopped_at: Completed 02-01-PLAN.md
+last_updated: "2026-03-30T17:46:21.775Z"
 progress:
   total_phases: 4
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
-  percent: 25
+  total_plans: 4
+  completed_plans: 3
 ---
 
 # Project State
@@ -21,16 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-30)
 
 **Core value:** Demonstrate quantum circuit ansatze can generate faithful synthetic bioprocess data with rigorous methodology
-**Current focus:** Phase 2 - Generation Bug Fixes
+**Current focus:** Phase 02 — generation-bug-fixes
 
 ## Current Position
 
-Phase: 2 of 4 (Generation Bug Fixes)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-03-30 — Roadmap created for v1.1
-
-Progress: [===-------] 25% (1/4 phases)
+Phase: 02 (generation-bug-fixes) — EXECUTING
+Plan: 2 of 2
 
 ## Performance Metrics
 
@@ -51,6 +45,8 @@ Progress: [===-------] 25% (1/4 phases)
 - Last 5 plans: —
 - Trend: —
 
+| Phase 02-generation-bug-fixes P01 | 2 | 2 tasks | 1 files |
+
 ## Accumulated Context
 
 ### Decisions
@@ -64,6 +60,8 @@ Recent decisions affecting current work:
 - v1.1: Quantum distribution principle — circuits define their own distributions, no classical overlays
 - v1.1: Scrap unstarted v1.0 phases, redefine roadmap around code review findings
 - v1.1: DINT-01 (leakage fix) kept in separate phase from code fixes — requires expensive retraining
+- [Phase 02-generation-bug-fixes]: GENBUG-01/02/03 fixes applied to all 3 qGAN variants; torch.randn noise, row-major indexing, no 0.1 scaling, non-overlapping seed scheme
+- [Phase 02-generation-bug-fixes]: Smoke test cell added after generation loop using MODELS_INFO dict; SMOKE_N=10 for fast validation; warns on variance and sign bias (not asserts)
 
 ### Pending Todos
 
@@ -77,6 +75,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-30T15:55:46.679Z
-Stopped at: Phase 2 context gathered
-Resume file: .planning/phases/02-generation-bug-fixes/02-CONTEXT.md
+Last session: 2026-03-30T17:46:21.772Z
+Stopped at: Completed 02-01-PLAN.md
+Resume file: None

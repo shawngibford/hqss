@@ -63,7 +63,7 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Fix qGAN noise/scaling, seed collisions, and add smoke test cell
+- [x] 02-01-PLAN.md — Fix qGAN noise/scaling, seed collisions, and add smoke test cell
 - [ ] 02-02-PLAN.md — Fix cross-boundary window contamination in LSTM loops
 
 ### Phase 3: Data Leakage Fix
