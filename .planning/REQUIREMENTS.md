@@ -9,14 +9,14 @@ Requirements for critical bug fixes. Each maps to roadmap phases.
 
 ### Generation Bugs
 
-- [ ] **GENBUG-01**: Fix qGAN noise distribution — use `torch.randn` at generation (matching training), not `np.random.uniform(0, 4pi)`
-- [ ] **GENBUG-02**: Remove `* 0.1` scaling at generation — circuit outputs must match training scale
-- [ ] **GENBUG-03**: Fix seed collisions — use non-overlapping seed ranges so all 3 replicates are truly independent (no shared curves)
-- [ ] **GENBUG-04**: Fix cross-boundary window contamination — create sliding windows per curve independently, then concatenate (X, y) arrays
+- [x] **GENBUG-01**: Fix qGAN noise distribution — use `torch.randn` at generation (matching training), not `np.random.uniform(0, 4pi)`
+- [x] **GENBUG-02**: Remove `* 0.1` scaling at generation — circuit outputs must match training scale
+- [x] **GENBUG-03**: Fix seed collisions — use non-overlapping seed ranges so all 3 replicates are truly independent (no shared curves)
+- [x] **GENBUG-04**: Fix cross-boundary window contamination — create sliding windows per curve independently, then concatenate (X, y) arrays
 
 ### Data Integrity
 
-- [ ] **DINT-01**: Fix data leakage — build `gan_loader`/`vae_loader` from train-split only windows; compute MU, SIGMA, GR_MIN, GR_MAX on training data only
+- [x] **DINT-01**: ~~Fix data leakage~~ INVALIDATED — generators correctly train on all data by design (data augmentation experiment, not generative benchmark; see 03-CONTEXT.md)
 - [ ] **DINT-02**: Fix training budget asymmetry — add validation-based early stopping or epoch-proportional training so augmented LSTMs don't get 320x more gradient steps than baseline
 - [ ] **DINT-03**: Run baseline LSTM with same 3+ seeds — report baseline mean +/- std for fair comparison instead of single-seed point estimate
 
@@ -84,11 +84,11 @@ Requirements for critical bug fixes. Each maps to roadmap phases.
 | PREP-01 | Phase 1 | Complete |
 | PREP-02 | Phase 1 | Complete |
 | PREP-03 | Phase 1 | Complete |
-| GENBUG-01 | Phase 2 | Pending |
-| GENBUG-02 | Phase 2 | Pending |
-| GENBUG-03 | Phase 2 | Pending |
-| GENBUG-04 | Phase 2 | Pending |
-| DINT-01 | Phase 3 | Pending |
+| GENBUG-01 | Phase 2 | Complete |
+| GENBUG-02 | Phase 2 | Complete |
+| GENBUG-03 | Phase 2 | Complete |
+| GENBUG-04 | Phase 2 | Complete |
+| DINT-01 | Phase 3 (removed) | Invalidated |
 | DINT-02 | Phase 4 | Pending |
 | DINT-03 | Phase 4 | Pending |
 | EVAL-01 | Phase 4 | Pending |

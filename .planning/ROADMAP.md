@@ -2,12 +2,12 @@
 
 ## Overview
 
-Three phases fix the critical generation bugs uncovered by deep code review, then rebuild the experiment on correct foundations. Phase 2 fixes all generation-time code bugs (noise mismatch, scaling, seed collisions, window contamination) so that generated curves are valid. Phase 3 eliminates data leakage by retraining all generators on the train split only and recomputing preprocessing constants. Phase 4 fixes the LSTM evaluation pipeline (training budget fairness, multi-seed baseline, MAPE replacement) so model comparisons are meaningful.
+Two remaining phases fix the critical generation bugs uncovered by deep code review, then rebuild the experiment on correct foundations. Phase 2 fixes all generation-time code bugs (noise mismatch, scaling, seed collisions, window contamination) so that generated curves are valid. Phase 3 fixes the LSTM evaluation pipeline (training budget fairness, multi-seed baseline, MAPE replacement) so model comparisons are meaningful. (Original Phase 3 "Data Leakage Fix" was removed — generators correctly train on all data by design; see 03-CONTEXT.md.)
 
 ## Milestones
 
 - Partial **v1.0 Preprocessing** - Phase 1 (completed 2026-03-19)
-- In Progress **v1.1 Generation Pipeline & Experimental Rigor** - Phases 2-4
+- In Progress **v1.1 Generation Pipeline & Experimental Rigor** - Phases 2-3
 
 ## Phases
 
@@ -26,9 +26,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 ### v1.1 Generation Pipeline & Experimental Rigor (In Progress)
 
-- [ ] **Phase 2: Generation Bug Fixes** - Fix qGAN noise/scaling, seed collisions, and window contamination so generated curves are valid
-- [ ] **Phase 3: Data Leakage Fix** - Retrain all generators on train-split only with corrected preprocessing constants
-- [ ] **Phase 4: LSTM Evaluation Fixes** - Equalize training budget, multi-seed baseline, and replace MAPE with appropriate metric
+- [x] **Phase 2: Generation Bug Fixes** - Fix qGAN noise/scaling, seed collisions, and window contamination so generated curves are valid
+- ~~Phase 3: Data Leakage Fix~~ — REMOVED (generators correctly train on all data; this is a data augmentation experiment, not a generative modeling benchmark)
+- [ ] **Phase 3: LSTM Evaluation Fixes** - Equalize training budget, multi-seed baseline, and replace MAPE with appropriate metric
 
 ## Phase Details
 
@@ -51,6 +51,9 @@ Plans:
 
 </details>
 
+<details>
+<summary>Phase 2: Generation Bug Fixes - COMPLETED 2026-03-30</summary>
+
 ### Phase 2: Generation Bug Fixes
 **Goal**: All four generative models produce valid synthetic curves from correctly implemented generation code
 **Depends on**: Phase 1
@@ -66,22 +69,11 @@ Plans:
 - [x] 02-01-PLAN.md — Fix qGAN noise/scaling, seed collisions, and add smoke test cell
 - [x] 02-02-PLAN.md — Fix cross-boundary window contamination in LSTM loops
 
-### Phase 3: Data Leakage Fix
-**Goal**: All generative models train exclusively on the training split, eliminating information leakage from the test period
-**Depends on**: Phase 2
-**Requirements**: DINT-01
-**Success Criteria** (what must be TRUE):
-  1. The train/test split happens before dataset construction -- `gan_loader` and `vae_loader` contain only windows from the first 80% of the OD series
-  2. MU, SIGMA, GR_MIN, and GR_MAX are computed from training-period growth rates only, and a verification cell prints these values alongside the old full-dataset values
-  3. All four generative model checkpoints are retrained on train-only loaders and saved as new checkpoints (old checkpoints preserved for comparison)
-**Plans**: TBD
+</details>
 
-Plans:
-(none yet -- defined by plan-phase)
-
-### Phase 4: LSTM Evaluation Fixes
+### Phase 3: LSTM Evaluation Fixes
 **Goal**: The LSTM evaluation pipeline produces fair, interpretable comparisons across all models
-**Depends on**: Phase 3
+**Depends on**: Phase 2
 **Requirements**: DINT-02, DINT-03, EVAL-01
 **Success Criteria** (what must be TRUE):
   1. Augmented LSTM training uses validation-based early stopping or epoch-proportional training so the baseline and size=250 augmented models receive comparable effective training (not 320x gradient step disparity)
@@ -96,11 +88,11 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 (complete) -> 2 -> 3 -> 4
+Phases execute in numeric order: 1 (complete) -> 2 (complete) -> 3
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
 | 1. Preprocessing | v1.0 | 2/2 | Complete | 2026-03-19 |
-| 2. Generation Bug Fixes | v1.1 | 2/2 | Complete   | 2026-03-30 |
-| 3. Data Leakage Fix | v1.1 | 0/TBD | Not started | - |
-| 4. LSTM Evaluation Fixes | v1.1 | 0/TBD | Not started | - |
+| 2. Generation Bug Fixes | v1.1 | 2/2 | Complete | 2026-03-30 |
+| ~~3. Data Leakage Fix~~ | v1.1 | - | Removed | 2026-04-08 |
+| 3. LSTM Evaluation Fixes | v1.1 | 0/TBD | Not started | - |
