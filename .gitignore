@@ -1,0 +1,24 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+
+# Data (not publicly archived)
+data.csv
+
+# Trained checkpoints (large binaries, regenerable)
+checkpoints/
+
+# Internal planning / review docs
+.planning/
+sci_review.md
+
+# Submodule / experimental code not ready for publication
+qzeta/
+
+# Generated figures (regenerable from notebook)
+figures/
