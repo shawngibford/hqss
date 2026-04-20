@@ -1,0 +1,66 @@
+{
+  "real_growth_rate": {
+    "mean": 0.002451828942055372,
+    "std": 0.021473127436261626,
+    "n": 777
+  },
+  "models": {
+    "cgan": {
+      "n_files": 9,
+      "n_curves": 1350,
+      "n_points": 1039500,
+      "mean": -0.01846303041230398,
+      "std": 0.014815744272413759,
+      "min": -0.06702660024166107,
+      "max": 0.016275707632303238,
+      "std_ratio_to_real": 0.6899667650364912,
+      "strict_pass": true,
+      "loose_pass": true,
+      "mean_ok": true,
+      "sign_ok": true
+    },
+    "cvae": {
+      "n_files": 9,
+      "n_curves": 1350,
+      "n_points": 1036800,
+      "mean": 0.002277577686069362,
+      "std": 0.0005229815814589659,
+      "min": 0.0014050137251615524,
+      "max": 0.003612529020756483,
+      "std_ratio_to_real": 0.024355165916624143,
+      "strict_pass": false,
+      "loose_pass": false,
+      "mean_ok": true,
+      "sign_ok": false
+    },
+    "qgan": {
+      "n_files": 9,
+      "n_curves": 1350,
+      "n_points": 1039500,
+      "mean": 0.0009301314852284442,
+      "std": 0.03250365913392426,
+      "min": -0.07253986597061157,
+      "max": 0.08338046073913574,
+      "std_ratio_to_real": 1.5136900402796192,
+      "strict_pass": true,
+      "loose_pass": true,
+      "mean_ok": true,
+      "sign_ok": true
+    },
+    "qvae": {
+      "n_files": 9,
+      "n_curves": 1350,
+      "n_points": 1036800,
+      "mean": 0.002149857266734611,
+      "std": 0.010512943635289037,
+      "min": -0.03297438472509384,
+      "max": 0.03709422051906586,
+      "std_ratio_to_real": 0.4895860496564581,
+      "strict_pass": false,
+      "loose_pass": true,
+      "mean_ok": true,
+      "sign_ok": true
+    }
+  },
+  "overall_pass": false
+}
