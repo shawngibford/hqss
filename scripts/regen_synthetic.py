@@ -79,7 +79,10 @@ def execute_notebook(nb: dict) -> dict:
     from nbclient.exceptions import CellExecutionError
     import nbformat
 
-    nb_node = nbformat.from_dict(nb)
+    # Round-trip through nbformat.writes/reads to normalise the `source` field
+    # from list-of-lines (raw .ipynb JSON) to the single-string form nbclient
+    # expects. `nbformat.from_dict` alone does not do this.
+    nb_node = nbformat.reads(json.dumps(nb), as_version=4)
     client = NotebookClient(
         nb_node,
         timeout=None,
